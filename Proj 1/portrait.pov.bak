@@ -1,0 +1,60 @@
+  #include "colors.inc"
+  #include "shapes.inc"
+  #include "textures.inc"
+  #include "colors.inc"    // The include files contain
+  #include "stones.inc"    // pre-defined scene elements
+  #include "textures.inc"    // pre-defined scene elements
+  #include "shapes.inc"
+  #include "glass.inc"
+  #include "metals.inc"
+  #include "woods.inc"
+  background { color Cyan }
+  cone {
+    <0, 0, -6>, 0.1
+    <0, 2, -6>, 0.7
+    pigment {Col_Glass_Ruby}
+    finish {
+        ambient .2
+        diffuse .6
+        specular .75
+        roughness .001
+        reflection {
+           .5
+        }
+      
+    }
+    
+    
+  }
+  plane {
+    y, -1.0
+    pigment {
+      checker color DarkGreen  color Green
+    }
+  }
+  
+  light_source {
+    <0, 0, -3>
+    color White
+    spotlight
+    radius 15
+    falloff 18
+    tightness 10
+    area_light <1, 0, 0>, <0, 0, 1>, 2, 2
+    adaptive 1
+    jitter
+    point_at <0, 0, -6>
+  }
+  
+  camera {
+    location <0.0, 1.0, -10.0>
+    look_at  <0.0, 1.0,  0.0>
+  //  focal_point <-6, 1, 30>    // blue cylinder in focus
+  //  focal_point < 0, 1,  0>    // green box in focus
+    focal_point < 1, 1, -6>    // pink sphere in focus
+    aperture 0.4     // a nice compromise
+  //  aperture 0.05    // almost everything is in focus
+  //  aperture 1.5     // much blurring
+  //  blur_samples 4       // fewer samples, faster to render
+    blur_samples 20      // more samples, higher quality image
+  }
