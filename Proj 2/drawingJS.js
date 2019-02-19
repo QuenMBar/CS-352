@@ -16,17 +16,18 @@ $(document).ready(function () { gasket.init(); });
 gasket.init = function () {
     gasket.canvas  = $('#canvas1')[0];
     gasket.cx = gasket.canvas.getContext('2d');	// get the drawing canvas
-    gasket.cx.fillStyle = 'rgba(250,0,0,0.7)';
-
-    vertex[0] = Vector.create([0,0]);		// the vertices of our triangle
-    vertex[1] = Vector.create([1,0]);
-    vertex[2] = Vector.create([0.5,1]);
 
     // By default (0,0) is the upper left and canvas.width, canvas.height
     // is the lower right. We'll add a matrix multiplication to the state
     // to change the coordinate system so that the central part of the canvas
     // (a 300x300 square) is (0,0) to (1,1), with (0,0) in the lower left.
     gasket.cx.setTransform(300,0,0,-300,75,321);
+
+    gasket.cx.fillRect(.38, .2, .24, .47);
+
+    gasket.cx.beginPath();
+    gasket.cx.arc(.5, .75, .1, 0, Math.PI*2, true);
+    gasket.cx.fill();
 
     // bind functions to events, button clicks
     $('#erasebutton').bind('click', gasket.erase);
