@@ -6,6 +6,7 @@
  * Harry Plantinga -- January 2011
  */
 
+var isChecked = false;
 var gasket = {
     radius:	0.005,				// dot radius
 }
@@ -23,31 +24,67 @@ gasket.init = function () {
     // (a 300x300 square) is (0,0) to (1,1), with (0,0) in the lower left.
     gasket.cx.setTransform(300,0,0,-300,75,321);
 
+    gasket.drawBase();
+
+    // bind functions to events, button clicks
+    $('#armsID').bind('change', gasket.checkedFun);
+    $('#drawArmsbutton').bind('click', gasket.drawArms);
+    $('#slider1').bind('change', gasket.slider);
+}
+
+gasket.drawBase = function(ev) {
+    gasket.erase();
+
     gasket.cx.fillRect(.38, .2, .24, .47);
 
     gasket.cx.beginPath();
     gasket.cx.arc(.5, .75, .1, 0, Math.PI*2, true);
     gasket.cx.fill();
-
-    // bind functions to events, button clicks
-    $('#erasebutton').bind('click', gasket.erase);
-    $('#drawbutton').bind('click', gasket.draw);
-    $('#slider1').bind('change', gasket.slider);
+    gasket.cx.beginPath();
+    gasket.cx.arc(.4, .64, .04, 0, Math.PI*2, true);
+    gasket.cx.moveTo(.6, .64);
+    gasket.cx.arc(.6, .64, .04, 0, Math.PI*2, false);
+    gasket.cx.fill();
 }
 
-gasket.draw = function(ev) {
-    // pick a random point along the bottom edge
-    p = Vector.create([Math.random(),0]);
-    $('#messages').prepend("Starting point: (" + p.e(1) + "," + p.e(2) + ")<br>");
+gasket.drawArms = function(ev) {
+    gasket.drawBase();
+    if (!isChecked) {
+        gasket.cx.beginPath();
+        gasket.cx.moveTo(.36, .65);
+        gasket.cx.lineTo(.36 - (.05 * $('#slider1').val()), .65 - (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.4 - (.05 * $('#slider1').val()), .61 - (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.4, .61);
+        gasket.cx.lineTo(.36, .65);
+        gasket.cx.closePath();
+        gasket.cx.fill();
 
-    for (i=0; i<$('#slider1').val(); i++) {
-        v = Math.floor(Math.random() * 3);		// random integer from 0 to 2
-        p = (vertex[v].add(p)).multiply(0.5);	// average p with chosen vertex
-        if (i<5) {
-            $('#messages').prepend("Avg with vertex["+v+"]->["+p.e(1)+","+p.e(2)+"]<br>");
-        }
+        gasket.cx.beginPath();
+        gasket.cx.moveTo(.64, .65);
+        gasket.cx.lineTo(.64 + (.05 * $('#slider1').val()), .65 - (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.6 + (.05 * $('#slider1').val()), .61 - (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.6, .61);
+        gasket.cx.lineTo(.36, .65);
+        gasket.cx.closePath();
+        gasket.cx.fill();
+    } else {
+        gasket.cx.beginPath();
+        gasket.cx.moveTo(.4 - (.05 * $('#slider1').val()), .61 + (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.4, .61);
+        gasket.cx.lineTo(.36, .65);
+        gasket.cx.lineTo(.36 - (.05 * $('#slider1').val()), .65 + (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.4 - (.05 * $('#slider1').val()), .61 + (.05 * $('#slider1').val()));
+        gasket.cx.closePath();
+        gasket.cx.fill();
 
-        gasket.circle(p.e(1), p.e(2), gasket.radius);
+        gasket.cx.beginPath();
+        gasket.cx.moveTo(.64, .65);
+        gasket.cx.lineTo(.64 + (.05 * $('#slider1').val()), .65 + (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.6 + (.05 * $('#slider1').val()), .61 + (.05 * $('#slider1').val()));
+        gasket.cx.lineTo(.6, .61);
+        gasket.cx.lineTo(.36, .65);
+        gasket.cx.closePath();
+        gasket.cx.fill();
     }
 }
 
@@ -62,6 +99,15 @@ gasket.circle = function(x, y, radius) {
 gasket.erase = function(ev) {
     gasket.cx.clearRect(-1,-1,3,3);
     $('#messages').html("");
+}
+
+gasket.checkedFun = function(ev) {
+    if (isChecked) {
+        isChecked = false;
+    }
+    if (!isChecked) {
+        isChecked = true;
+    }
 }
 
 // update the message below the slider with its setting
