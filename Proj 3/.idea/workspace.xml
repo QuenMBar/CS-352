@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd6851b8-b558-4a8c-9e84-3b69bdb4dfe8" name="Default Changelist" comment="" />
+    <list default="true" id="54e4c4cd-19e9-464d-aa42-f5ee84a6b540" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Proj 2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Proj 2/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,28 +16,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawingCSS.css">
+        <entry file="file://$PROJECT_DIR$/CanvasPaint.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="519">
+              <caret line="59" column="45" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawingHTML.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/CanvasPaint.css">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/drawingJS.js">
+        <entry file="file://$PROJECT_DIR$/CanvasPaint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1210">
-              <caret line="119" column="39" selection-start-line="119" selection-start-column="39" selection-end-line="119" selection-end-column="39" />
+            <state relative-caret-position="91">
+              <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -45,25 +43,13 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/drawingCSS.css" />
-        <option value="$PROJECT_DIR$/drawingStuff.html" />
-        <option value="$PROJECT_DIR$/drawingHTML.html" />
-        <option value="$PROJECT_DIR$/drawingJS.js" />
+        <option value="$PROJECT_DIR$/CanvasPaint.js" />
       </list>
     </option>
   </component>
@@ -83,8 +69,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="Proj 2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proj 2" type="462c0819:PsiDirectoryNode" />
+              <item name="Proj 3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Proj 3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -93,10 +79,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -117,26 +101,24 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd6851b8-b558-4a8c-9e84-3b69bdb4dfe8" name="Default Changelist" comment="" />
-      <created>1550072295871</created>
+      <changelist id="54e4c4cd-19e9-464d-aa42-f5ee84a6b540" name="Default Changelist" comment="" />
+      <created>1551314533525</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1550072295871</updated>
-      <workItem from="1550072298200" duration="1031000" />
-      <workItem from="1550613893565" duration="2028000" />
-      <workItem from="1550625895502" duration="4680000" />
-      <workItem from="1550666080849" duration="5204000" />
-      <workItem from="1551314445076" duration="88000" />
+      <updated>1551314533525</updated>
+      <workItem from="1551314534780" duration="14000" />
+      <workItem from="1551314577945" duration="853000" />
+      <workItem from="1551316270357" duration="1332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13031000" />
+    <option name="totallyTimeSpent" value="2199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10359408" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -159,25 +141,20 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/drawingStuff.html" />
-    <entry file="file://$PROJECT_DIR$/drawingCSS.css">
+    <entry file="file://$PROJECT_DIR$/CanvasPaint.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CanvasPaint.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="519">
+          <caret line="59" column="45" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drawingHTML.html">
+    <entry file="file://$PROJECT_DIR$/CanvasPaint.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/drawingJS.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="119" column="39" selection-start-line="119" selection-start-column="39" selection-end-line="119" selection-end-column="39" />
+        <state relative-caret-position="91">
+          <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
