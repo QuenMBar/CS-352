@@ -55,12 +55,48 @@ cpaint.init = function () {
   $('#menuOpen').bind('click',cpaint.open);
   $('#menuSave').bind('click',cpaint.save);
   $('#toolBar').toggle();		// when toolbar is initialized, make it visible
+  $('#clearButton').bind('click',cpaint.clear);
+
+  $( ".radio1" ).bind( "click", function() {
+    $( ".radio1" ).removeClass( "selected" );
+    $( this ).addClass( "selected" );
+    if ( $( "#markerButton" ).hasClass( "selected" ) ) {
+      cpaint.tool = 'marker';
+      $('#messages').prepend("Switched to: " + cpaint.tool + "<br>");
+    }
+    if ( $( "#lineButton" ).hasClass( "selected" ) ) {
+      cpaint.tool = 'line';
+      $('#messages').prepend("Switched to: " + cpaint.tool + "<br>");
+    }
+    if ( $( "#rectButton" ).hasClass( "selected" ) ) {
+      cpaint.tool = 'rect';
+      $('#messages').prepend("Switched to: " + cpaint.tool + "<br>");
+    }
+    if ( $( "#eraserButton" ).hasClass( "selected" ) ) {
+      cpaint.tool = 'eraser';
+      $('#messages').prepend("Switched to: " + cpaint.tool + "<br>");
+    }
+
+  });
+
+  $( "#clearButton" ).bind( "mousedown", function () {
+    $( "#clearButton" ).addClass( "selected" );
+  });
+
+
+  $( "#clearButton" ).bind( "mouseup", function () {
+    cpaint.clear();
+    $( "#clearButton" ).removeClass( "selected" );
+  });
+
+
 }
 
 /*
  * handle mousedown events
  */
 cpaint.drawStart = function(ev) {
+  $('#messages').prepend("Start Draw" + "<br>");
   var x, y; 				// convert event coords to (0,0) at top left of canvas
   x = ev.pageX - $(cpaint.canvas).offset().left;
   y = ev.pageY - $(cpaint.canvas).offset().top;
@@ -68,14 +104,21 @@ cpaint.drawStart = function(ev) {
 
   cpaint.drawing = true;			// go into drawing mode
   cpaint.cx.lineWidth = cpaint.lineThickness;
-  cpaint.cx.strokeStyle = cpaint.color;
-  cpaint.cx.fillStyle = cpaint.color;
+  if (cpaint.tool == 'eraser') {
+    cpaint.cx.strokeStyle = 'white';
+    cpaint.cx.fillStyle = 'white';
+  } else {
+    cpaint.cx.strokeStyle = cpaint.color;
+    cpaint.cx.fillStyle = cpaint.color;
+  }
   cpaint.imgData = cpaint.cx.getImageData(0, 0, cpaint.canvas.width, cpaint.canvas.height);
 
   // save drawing window contents
-  cpaint.cx.beginPath();			// draw initial point
-  cpaint.cx.arc(x, y, cpaint.lineThickness/2, 0, Math.PI*2, true);
-  cpaint.cx.fill();
+  if (cpaint.tool != 'rect') {
+    cpaint.cx.beginPath();			// draw initial point
+    cpaint.cx.arc(x, y, cpaint.lineThickness / 2, 0, Math.PI * 2, true);
+    cpaint.cx.fill();
+  }
 
   cpaint.oldX = x;
   cpaint.oldY = y;
@@ -85,13 +128,16 @@ cpaint.drawStart = function(ev) {
  * handle mouseup events
  */
 cpaint.drawEnd = function(ev) {
+  $('#messages').prepend("End Draw" + "<br>");
   var x, y;
   x = ev.pageX - $(cpaint.canvas).offset().left;
   y = ev.pageY - $(cpaint.canvas).offset().top;
   cpaint.drawing = false;
-  cpaint.cx.beginPath();			// draw initial point
-  cpaint.cx.arc(x, y, cpaint.lineThickness/2, 0, Math.PI*2, true);
-  cpaint.cx.fill();
+  if (cpaint.tool != 'rect') {
+    cpaint.cx.beginPath();			// draw initial point
+    cpaint.cx.arc(x, y, cpaint.lineThickness / 2, 0, Math.PI * 2, true);
+    cpaint.cx.fill();
+  }
 }
 
 /*
@@ -105,12 +151,27 @@ cpaint.draw = function(ev) {
   cpaint.cx.lineWidth = cpaint.lineThickness;
 
   if (cpaint.drawing) {
-    cpaint.cx.beginPath();			// draw initial stroke
-    cpaint.cx.moveTo(cpaint.oldX, cpaint.oldY);
-    cpaint.cx.lineTo(x,y);
-    cpaint.cx.stroke();
-    cpaint.oldX = x;
-    cpaint.oldY = y;
+    if (cpaint.tool == 'marker' || cpaint.tool == 'eraser') {
+      cpaint.cx.beginPath();			// draw initial stroke
+      cpaint.cx.moveTo(cpaint.oldX, cpaint.oldY);
+      cpaint.cx.lineTo(x, y);
+      cpaint.cx.stroke();
+      cpaint.oldX = x;
+      cpaint.oldY = y;
+    } else if (cpaint.tool == 'line') {
+      cpaint.cx.putImageData(cpaint.imgData, 0, 0);
+      // $('#messages').prepend("Drawing" + "<br>");
+      cpaint.cx.beginPath();			// draw initial stroke
+      cpaint.cx.moveTo(cpaint.oldX, cpaint.oldY);
+      cpaint.cx.lineTo(x, y);
+      cpaint.cx.stroke();
+    } else if (cpaint.tool == 'rect') {
+      cpaint.cx.putImageData(cpaint.imgData, 0, 0);
+      // $('#messages').prepend("Drawing" + "<br>");
+      cpaint.cx.fillRect(cpaint.oldX, cpaint.oldY, x - cpaint.oldX, y - cpaint.oldY);
+    } else {
+      $('#messages').prepend("Error Nothing Selected to Draw" + "<br>");
+    }
   }
 } 
 

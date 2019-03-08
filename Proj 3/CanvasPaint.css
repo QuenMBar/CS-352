@@ -59,6 +59,8 @@ body {
     box-shadow:2px 2px 2px #666;
 }
 
+.radio1:hover { border:solid #555 2px; }
+
 #markerButton { 
     background: url(https://cs.calvin.edu/curriculum/cs/352/files/img/paintbrush.png) no-repeat center center; 
 }
@@ -74,6 +76,8 @@ body {
 #clearButton { 
     background: url(https://cs.calvin.edu/curriculum/cs/352/files/img/trashcan.png) no-repeat center center; 
 }
+
+#clearButton:hover { border:solid #555 2px; }
 
 .selected {
     box-shadow: inset 2px 2px 2px #666;
