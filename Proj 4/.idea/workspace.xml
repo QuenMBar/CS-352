@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/solar.html" line="33" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd6851b8-b558-4a8c-9e84-3b69bdb4dfe8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drawingHTML.html" beforeDir="false" afterPath="$PROJECT_DIR$/drawingHTML.html" afterDir="false" />
+    <list default="true" id="0788a807-a3b1-489c-b9c9-de66d88ebce6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Proj 2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Proj 2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Proj 2/drawingHTML.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Proj 2/drawingHTML.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,30 +18,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawingCSS.css">
+        <entry file="file://$PROJECT_DIR$/solar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1717">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="493">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/drawingHTML.html">
+        <entry file="file://$PROJECT_DIR$/solar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawingJS.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1124">
-              <caret line="165" selection-start-line="165" selection-end-line="165" />
+            <state relative-caret-position="493">
+              <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -48,14 +51,10 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
-      </list>
-    </option>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>2</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -63,10 +62,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/drawingCSS.css" />
-        <option value="$PROJECT_DIR$/drawingStuff.html" />
-        <option value="$PROJECT_DIR$/drawingJS.js" />
-        <option value="$PROJECT_DIR$/drawingHTML.html" />
+        <option value="$PROJECT_DIR$/solar.html" />
+        <option value="$PROJECT_DIR$/styles.css" />
+        <option value="$PROJECT_DIR$/solar.js" />
       </list>
     </option>
   </component>
@@ -86,8 +84,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="Proj 2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proj 2" type="462c0819:PsiDirectoryNode" />
+              <item name="Proj 4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Proj 4" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -96,10 +94,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Proj 4" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -120,30 +116,28 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd6851b8-b558-4a8c-9e84-3b69bdb4dfe8" name="Default Changelist" comment="" />
-      <created>1550072295871</created>
+      <changelist id="0788a807-a3b1-489c-b9c9-de66d88ebce6" name="Default Changelist" comment="" />
+      <created>1552243909568</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1550072295871</updated>
-      <workItem from="1550072298200" duration="1031000" />
-      <workItem from="1550613893565" duration="2028000" />
-      <workItem from="1550625895502" duration="4680000" />
-      <workItem from="1550666080849" duration="5204000" />
-      <workItem from="1551314445076" duration="88000" />
-      <workItem from="1552233976036" duration="22000" />
-      <workItem from="1552234064275" duration="872000" />
+      <updated>1552243909568</updated>
+      <workItem from="1552243910749" duration="6988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13925000" />
+    <option name="totallyTimeSpent" value="6988000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11544586" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2786624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -151,10 +145,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -164,28 +154,30 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/drawingStuff.html" />
-    <entry file="file://$PROJECT_DIR$/drawingCSS.css">
+    <entry file="file://$PROJECT_DIR$/stars.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1717">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="850">
+          <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drawingJS.js">
+    <entry file="file://$PROJECT_DIR$/solar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1124">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="493">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/drawingHTML.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
         </state>
       </provider>
     </entry>
