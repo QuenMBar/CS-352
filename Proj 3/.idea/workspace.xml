@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54e4c4cd-19e9-464d-aa42-f5ee84a6b540" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CanvasPaint.css" beforeDir="false" afterPath="$PROJECT_DIR$/CanvasPaint.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CanvasPaint.js" beforeDir="false" afterPath="$PROJECT_DIR$/CanvasPaint.js" afterDir="false" />
-    </list>
+    <list default="true" id="54e4c4cd-19e9-464d-aa42-f5ee84a6b540" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -115,16 +112,15 @@
       <workItem from="1551314534780" duration="14000" />
       <workItem from="1551314577945" duration="853000" />
       <workItem from="1551316270357" duration="1332000" />
-      <workItem from="1551421150527" duration="5445000" />
+      <workItem from="1551421150527" duration="5568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7644000" />
+    <option name="totallyTimeSpent" value="7767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
