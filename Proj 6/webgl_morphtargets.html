@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - animation - morph targets</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				padding: 5px;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				color: #ffffff;
+			}
+
+			a { color: #ffffff; }
+
+		</style>
+	</head>
+
+	<body>
+		<div id="container"></div>
+		<div id="info">
+			<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - WebGL morph target example
+		</div>
+
+		<script src="build/three.js"></script>
+
+		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/WebGL.js"></script>
+		<script src="js/libs/dat.gui.min.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+
+		<script>
+
+			if ( WEBGL.isWebGLAvailable() === false ) {
+
+				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+
+			}
+
+			var container;
+
+			var camera, scene, renderer, raycaster;
+
+			var baseMesh, mesh1, mesh2, stemMesh, leafMesh, flowerMesh, pedalMesh, pedals = 8, mouse = new THREE.Vector2();
+			var params = {
+				pedals: 8
+			};
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.getElementById( 'container' );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 500;
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x222222 );
+				scene.fog = new THREE.Fog( 0x000000, 1, 15000 );
+
+				var light = new THREE.PointLight( 0xffffff );
+				light.position.z = 500;
+				light.position.y = 300;
+				light.position.x = 100;
+				camera.add( light );
+				scene.add( camera );
+
+				var light = new THREE.AmbientLight( 0x111111 );
+				scene.add( light );
+
+				var geometryBase = new THREE.SphereGeometry( 1 );
+				var materialBase = new THREE.MeshPhongMaterial( { color: 0x009900 } );
+				baseMesh = new THREE.Mesh(geometryBase, materialBase);
+
+				createStemGeo();         // Creates Stem
+
+				var Stem4 = stemMesh.clone();
+
+				createLeafGeo();
+				var Leaf1 = leafMesh.clone();
+				Leaf1.position.set(0, 20, 20);
+				Leaf1.scale.set(.8, .8, .8);
+				stemMesh.add( Leaf1 );
+				var Leaf2 = leafMesh.clone();
+				Leaf2.scale.set(.8, .8, .8);
+				var debugMesh = baseMesh.clone();
+				debugMesh.add(Leaf2);
+				debugMesh.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI ) );
+				debugMesh.position.set(0, -20, 0);
+				stemMesh.add( debugMesh );
+
+
+				var Stem1 = stemMesh.clone();
+				baseMesh.add(Stem1);
+				var Stem2 = stemMesh.clone();
+				Stem2.position.set(43, 80, 0);
+				Stem2.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI * ( 2/3 ) ) );
+				Stem1.add( Stem2 );
+				var Stem3 = stemMesh.clone();
+				Stem3.position.set(43, -80, 0);
+				Stem3.rotation.setFromVector3( new THREE.Vector3( 0, 0, - Math.PI * ( 2/3 ) ) );
+				Stem2.add( Stem3 );
+				Stem4.position.set(-43, 80, 0);
+				Stem4.rotation.setFromVector3( new THREE.Vector3( 0, 0, - Math.PI * ( 2/3 ) ) );
+				Stem3.add( Stem4 );
+
+				createFlowerGeo();
+				flowerMesh.position.set(0, -70, 2);
+				Stem4.add( flowerMesh );
+
+				baseMesh.position.set( 0, - 200, 0 );
+				scene.add( baseMesh );
+
+				raycaster = new THREE.Raycaster();
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				//
+
+				var controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.minDistance = 400;
+				controls.maxDistance = 1000;
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				document.addEventListener( 'click', onClick, false );
+
+			}
+
+			function onClick( event ) {
+
+				event.preventDefault();
+
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+				raycaster.setFromCamera( mouse, camera );
+
+				// var intersects = raycaster.intersectObject( mesh );
+				//
+				// if ( intersects.length > 0 ) {
+				//
+				// 	mesh.material.color.set( Math.random() * 0xffffff );
+				//
+				// }
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+			function render() {
+
+				baseMesh.rotation.y += 0.005;
+
+				renderer.render( scene, camera );
+
+			}
+
+			function createStemGeo() {
+				var geometry = new THREE.BoxGeometry( 10, 120, 10 );
+				var material = new THREE.MeshPhongMaterial( { color: 0x009900 } );
+
+				geometry = new THREE.BufferGeometry().fromGeometry( geometry );
+
+				stemMesh = new THREE.Mesh( geometry, material );
+
+				mesh1 = new THREE.Mesh( geometry, material );
+				mesh1.rotation.setFromVector3( new THREE.Vector3( 0, Math.PI * ( 2/3 ), 0 ) );
+				stemMesh.add( mesh1 );
+
+				mesh2 = new THREE.Mesh( geometry, material );
+				mesh2.rotation.setFromVector3( new THREE.Vector3( 0, Math.PI * ( 1/3 ), 0 ) );
+				stemMesh.add( mesh2 );
+			}
+
+			function createLeafGeo() {
+
+				var triangleShape = new THREE.Shape();
+				triangleShape.moveTo( 40, 10 );
+				triangleShape.lineTo( 20, 40 );
+				triangleShape.lineTo( 60, 40 );
+				triangleShape.lineTo( 40, 10 ); // close path
+				var material = new THREE.MeshPhongMaterial( { color: 0x009900 } );
+
+				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+				var geometryTri = new THREE.ExtrudeBufferGeometry( triangleShape, extrudeSettings );
+
+				var leafMesh1 = new THREE.Mesh( geometryTri, material );
+
+				var rectLength = 40, rectWidth = 60;
+
+				var rectShape = new THREE.Shape();
+				rectShape.moveTo( 0, 0 );
+				rectShape.lineTo( 0, rectWidth );
+				rectShape.lineTo( rectLength, rectWidth );
+				rectShape.lineTo( rectLength, 0 );
+				rectShape.lineTo( 0, 0 );
+				var geometryRect = new THREE.ExtrudeBufferGeometry( rectShape, extrudeSettings );
+
+				leafMesh = new THREE.Mesh( geometryRect, material );
+
+				leafMesh1.rotation.setFromVector3( new THREE.Vector3( Math.PI / 8, 0, Math.PI ) );
+				leafMesh1.position.set(60, 98, 16);
+
+				leafMesh.add(leafMesh1);
+				leafMesh.position.set(0, 0, 20);
+				leafMesh.rotation.setFromVector3( new THREE.Vector3( - Math.PI / 2, Math.PI / 20, Math.PI / 2 ) );
+
+
+			}
+
+			function createPedalGeo() {
+
+				var triangleShape = new THREE.Shape();
+				triangleShape.moveTo( 40, 10 );
+				triangleShape.lineTo( 20-5, 40 );
+				triangleShape.lineTo( 60+5, 40 );
+				triangleShape.lineTo( 40, 10 ); // close path
+				var material = new THREE.MeshPhongMaterial( { color: 0xFFF00 } );
+
+				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+				var geometryTri = new THREE.ExtrudeBufferGeometry( triangleShape, extrudeSettings );
+
+				var leafMesh1 = new THREE.Mesh( geometryTri, material );
+
+				var rectLength = 40, rectWidth = 60;
+
+				var rectShape = new THREE.Shape();
+				rectShape.moveTo( 5, 0 );
+				rectShape.lineTo( -5, rectWidth );
+				rectShape.lineTo( rectLength+5, rectWidth );
+				rectShape.lineTo( rectLength-5, 0 );
+				rectShape.lineTo( 5, 0 );
+				var geometryRect = new THREE.ExtrudeBufferGeometry( rectShape, extrudeSettings );
+
+				var pedalMesh2 = new THREE.Mesh( geometryRect, material );
+
+				leafMesh1.rotation.setFromVector3( new THREE.Vector3( Math.PI / 8, 0, Math.PI ) );
+				leafMesh1.position.set(60, 98, 16);
+
+				pedalMesh2.add(leafMesh1);
+				pedalMesh2.position.set(-14, 20, 0);
+				pedalMesh2.scale.set(.7, .7, .7);
+
+				var geometryBase = new THREE.SphereGeometry( 1 );
+				var materialBase = new THREE.MeshPhongMaterial( { color: 0x009900 } );
+				pedalMesh = new THREE.Mesh(geometryBase, materialBase);
+				pedalMesh.add(pedalMesh2);
+
+
+			}
+
+			function createFlowerGeo() {
+
+				var circleRadius = 25;
+				var circleShape = new THREE.Shape();
+				circleShape.moveTo( 0, circleRadius );
+				circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
+				circleShape.quadraticCurveTo( circleRadius, - circleRadius, 0, - circleRadius );
+				circleShape.quadraticCurveTo( - circleRadius, - circleRadius, - circleRadius, 0 );
+				circleShape.quadraticCurveTo( - circleRadius, circleRadius, 0, circleRadius );
+				var material = new THREE.MeshPhongMaterial( { color: 0x33300 } );
+
+				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+				var geometryCenter = new THREE.ExtrudeBufferGeometry( circleShape, extrudeSettings );
+
+
+				flowerMesh = new THREE.Mesh( geometryCenter, material );
+
+				createPedalGeo();
+				for (var i = 0; i < pedals ; i++) {
+					var pedal1 = pedalMesh.clone();
+					pedal1.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI * (i / (pedals / 2) ) ) );
+					flowerMesh.add( pedal1 );
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+				// var rectLength = 40, rectWidth = 60;
+				//
+				// var rectShape = new THREE.Shape();
+				// rectShape.moveTo( 0, 0 );
+				// rectShape.lineTo( 0, rectWidth );
+				// rectShape.lineTo( rectLength, rectWidth );
+				// rectShape.lineTo( rectLength, 0 );
+				// rectShape.lineTo( 0, 0 );
+				// var geometryRect = new THREE.ExtrudeBufferGeometry( rectShape, extrudeSettings );
+				//
+				// leafMesh = new THREE.Mesh( geometryRect, material );
+				//
+				// leafMesh1.rotation.setFromVector3( new THREE.Vector3( Math.PI / 8, 0, Math.PI ) );
+				// leafMesh1.position.set(60, 98, 16);
+				//
+				// leafMesh.add(leafMesh1);
+				// leafMesh.position.set(0, 0, 20);
+				// leafMesh.rotation.setFromVector3( new THREE.Vector3( - Math.PI / 2, Math.PI / 20, Math.PI / 2 ) );
+
+
+			}
+
+		</script>
+
+	</body>
+</html>
