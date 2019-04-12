@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - animation - morph targets</title>
+		<title>SUn Flower</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -31,7 +31,7 @@
 	<body>
 		<div id="container"></div>
 		<div id="info">
-			<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - WebGL morph target example
+			Sun Flower
 		</div>
 
 		<script src="build/three.js"></script>
@@ -53,10 +53,8 @@
 
 			var camera, scene, renderer, raycaster;
 
-			var baseMesh, mesh1, mesh2, stemMesh, leafMesh, flowerMesh, pedalMesh, pedals = 8, mouse = new THREE.Vector2();
-			var params = {
-				pedals: 8
-			};
+			var baseMesh, mesh1, mesh2, stemMesh, leafMesh, flowerMesh, pedalMesh, mouse = new THREE.Vector2();
+			var pedals = 9;  // This variable controls how many pedals are displayed.  Tried creating a slider for it but it wouldnt update
 
 			init();
 			animate();
@@ -82,30 +80,31 @@
 				var light = new THREE.AmbientLight( 0x111111 );
 				scene.add( light );
 
+				// Creates a small circle that is used as the starting point for the rest of the flower
 				var geometryBase = new THREE.SphereGeometry( 1 );
 				var materialBase = new THREE.MeshPhongMaterial( { color: 0x009900 } );
 				baseMesh = new THREE.Mesh(geometryBase, materialBase);
 
-				createStemGeo();         // Creates Stem
+				createStemGeo();         // Creates Stem mesh
 
-				var Stem4 = stemMesh.clone();
+				var Stem4 = stemMesh.clone();  // Creates a stem mesh without leaves
 
-				createLeafGeo();
-				var Leaf1 = leafMesh.clone();
+				createLeafGeo();		// Creates Leaf mesh.
+				var Leaf1 = leafMesh.clone();  // Clones it so we can use it multiple times
 				Leaf1.position.set(0, 20, 20);
 				Leaf1.scale.set(.8, .8, .8);
-				stemMesh.add( Leaf1 );
+				stemMesh.add( Leaf1 );   // Adds it to the stemMesh
 				var Leaf2 = leafMesh.clone();
 				Leaf2.scale.set(.8, .8, .8);
 				var debugMesh = baseMesh.clone();
-				debugMesh.add(Leaf2);
-				debugMesh.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI ) );
+				debugMesh.add(Leaf2);    // Rotations were causing issues so made a baseMesh for it to handle rotations
+				debugMesh.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI ) ); // Flips it along the z access
 				debugMesh.position.set(0, -20, 0);
-				stemMesh.add( debugMesh );
+				stemMesh.add( debugMesh );  // Adds it to the stemMesh
 
 
 				var Stem1 = stemMesh.clone();
-				baseMesh.add(Stem1);
+				baseMesh.add(Stem1);    // Adds a stemMesh to baseMesh.   Adds subsequent meshes onto the mesh that came before it.
 				var Stem2 = stemMesh.clone();
 				Stem2.position.set(43, 80, 0);
 				Stem2.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI * ( 2/3 ) ) );
@@ -118,12 +117,12 @@
 				Stem4.rotation.setFromVector3( new THREE.Vector3( 0, 0, - Math.PI * ( 2/3 ) ) );
 				Stem3.add( Stem4 );
 
-				createFlowerGeo();
+				createFlowerGeo();			// Creates a flower geo aswell as the pedals
 				flowerMesh.position.set(0, -70, 2);
-				Stem4.add( flowerMesh );
+				Stem4.add( flowerMesh );    // Adds it to the top stemMesh
 
-				baseMesh.position.set( 0, - 200, 0 );
-				scene.add( baseMesh );
+				baseMesh.position.set( 0, - 200, 0 );  // Centers the flower
+				scene.add( baseMesh );      // Adds the flower to the scene
 
 				raycaster = new THREE.Raycaster();
 
@@ -193,11 +192,11 @@
 				var geometry = new THREE.BoxGeometry( 10, 120, 10 );
 				var material = new THREE.MeshPhongMaterial( { color: 0x009900 } );
 
-				geometry = new THREE.BufferGeometry().fromGeometry( geometry );
+				geometry = new THREE.BufferGeometry().fromGeometry( geometry );  // Creates a tall green box
 
 				stemMesh = new THREE.Mesh( geometry, material );
 
-				mesh1 = new THREE.Mesh( geometry, material );
+				mesh1 = new THREE.Mesh( geometry, material );     // Makes 3 boxes and rotates them a third each so they look more round
 				mesh1.rotation.setFromVector3( new THREE.Vector3( 0, Math.PI * ( 2/3 ), 0 ) );
 				stemMesh.add( mesh1 );
 
@@ -208,7 +207,7 @@
 
 			function createLeafGeo() {
 
-				var triangleShape = new THREE.Shape();
+				var triangleShape = new THREE.Shape();    // Creates a flat triangle
 				triangleShape.moveTo( 40, 10 );
 				triangleShape.lineTo( 20, 40 );
 				triangleShape.lineTo( 60, 40 );
@@ -216,9 +215,9 @@
 				var material = new THREE.MeshPhongMaterial( { color: 0x009900 } );
 
 				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-				var geometryTri = new THREE.ExtrudeBufferGeometry( triangleShape, extrudeSettings );
+				var geometryTri = new THREE.ExtrudeBufferGeometry( triangleShape, extrudeSettings );  //  Extrudes the flat shape
 
-				var leafMesh1 = new THREE.Mesh( geometryTri, material );
+				var leafMesh1 = new THREE.Mesh( geometryTri, material );  // Creates a triangle mesh
 
 				var rectLength = 40, rectWidth = 60;
 
@@ -230,26 +229,26 @@
 				rectShape.lineTo( 0, 0 );
 				var geometryRect = new THREE.ExtrudeBufferGeometry( rectShape, extrudeSettings );
 
-				leafMesh = new THREE.Mesh( geometryRect, material );
+				leafMesh = new THREE.Mesh( geometryRect, material );   // Creates a rectangle mesh
 
 				leafMesh1.rotation.setFromVector3( new THREE.Vector3( Math.PI / 8, 0, Math.PI ) );
 				leafMesh1.position.set(60, 98, 16);
 
-				leafMesh.add(leafMesh1);
+				leafMesh.add(leafMesh1); // Adds the tringle to the rectangle to make a leaf
 				leafMesh.position.set(0, 0, 20);
 				leafMesh.rotation.setFromVector3( new THREE.Vector3( - Math.PI / 2, Math.PI / 20, Math.PI / 2 ) );
 
 
 			}
 
-			function createPedalGeo() {
+			function createPedalGeo() {     // Same thing as Leaf with slightly altered dimensions and color
 
 				var triangleShape = new THREE.Shape();
 				triangleShape.moveTo( 40, 10 );
 				triangleShape.lineTo( 20-5, 40 );
 				triangleShape.lineTo( 60+5, 40 );
 				triangleShape.lineTo( 40, 10 ); // close path
-				var material = new THREE.MeshPhongMaterial( { color: 0xFFF00 } );
+				var material = new THREE.MeshPhongMaterial( { color: 0xFEF740 } );
 
 				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
 				var geometryTri = new THREE.ExtrudeBufferGeometry( triangleShape, extrudeSettings );
@@ -275,7 +274,7 @@
 				pedalMesh2.position.set(-14, 20, 0);
 				pedalMesh2.scale.set(.7, .7, .7);
 
-				var geometryBase = new THREE.SphereGeometry( 1 );
+				var geometryBase = new THREE.SphereGeometry( 1 ); // Creates a base mesh for easier rotating
 				var materialBase = new THREE.MeshPhongMaterial( { color: 0x009900 } );
 				pedalMesh = new THREE.Mesh(geometryBase, materialBase);
 				pedalMesh.add(pedalMesh2);
@@ -295,48 +294,17 @@
 				var material = new THREE.MeshPhongMaterial( { color: 0x33300 } );
 
 				var extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
-				var geometryCenter = new THREE.ExtrudeBufferGeometry( circleShape, extrudeSettings );
+				var geometryCenter = new THREE.ExtrudeBufferGeometry( circleShape, extrudeSettings );  // Creates a circle and extrudes it
 
 
 				flowerMesh = new THREE.Mesh( geometryCenter, material );
 
 				createPedalGeo();
-				for (var i = 0; i < pedals ; i++) {
+				for (var i = 0; i < pedals ; i++) {   // Adds pedals to the flowerMesh.  Change the value to pedals to add as many as you want.
 					var pedal1 = pedalMesh.clone();
 					pedal1.rotation.setFromVector3( new THREE.Vector3( 0, 0, Math.PI * (i / (pedals / 2) ) ) );
 					flowerMesh.add( pedal1 );
 				}
-
-
-
-
-
-
-
-
-
-
-
-
-				// var rectLength = 40, rectWidth = 60;
-				//
-				// var rectShape = new THREE.Shape();
-				// rectShape.moveTo( 0, 0 );
-				// rectShape.lineTo( 0, rectWidth );
-				// rectShape.lineTo( rectLength, rectWidth );
-				// rectShape.lineTo( rectLength, 0 );
-				// rectShape.lineTo( 0, 0 );
-				// var geometryRect = new THREE.ExtrudeBufferGeometry( rectShape, extrudeSettings );
-				//
-				// leafMesh = new THREE.Mesh( geometryRect, material );
-				//
-				// leafMesh1.rotation.setFromVector3( new THREE.Vector3( Math.PI / 8, 0, Math.PI ) );
-				// leafMesh1.position.set(60, 98, 16);
-				//
-				// leafMesh.add(leafMesh1);
-				// leafMesh.position.set(0, 0, 20);
-				// leafMesh.rotation.setFromVector3( new THREE.Vector3( - Math.PI / 2, Math.PI / 20, Math.PI / 2 ) );
-
 
 			}
 
